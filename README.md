@@ -1,4 +1,4 @@
-# dmenu
+# dmenu_raycast
 
 A `dmenu`-like extension for Raycast.
 
