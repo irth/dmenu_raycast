@@ -20,4 +20,27 @@ Whitespace is stripped, but this might change in the future once I check if `dme
 
 ## Installation
 
-TODO
+From source:
+
+```shell
+git clone https://github.com/irth/dmenu_raycast
+cd dmenu_raycast
+npm install
+npx ray build -e dist -o dist
+open raycast://extensions/raycast/developer/import-extension
+```
+
+In Raycast, navigate to the "dist" that `npx ray build -e dist -o dist` created
+and choose it.
+
+Now, link the `dmenu_raycast` script to somewhere in your `$PATH`, for example
+
+```
+sudo ln -s $(pwd)/dmenu_raycast /usr/local/bin/
+```
+
+or
+
+```
+ln -s $(pwd)/dmenu_raycast ~/.local/bin
+```
