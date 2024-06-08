@@ -28,7 +28,6 @@
       ]
     }
   ],
-  "tools": null,
   "dependencies": {
     "@raycast/api": "^1.76.0",
     "@raycast/utils": "^1.15.0"
