@@ -24,6 +24,12 @@
           "placeholder": "Port",
           "type": "text",
           "required": true
+        },
+        {
+          "name": "prompt",
+          "placeholder": "Prompt",
+          "type": "text",
+          "required": false
         }
       ]
     }

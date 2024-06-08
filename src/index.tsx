@@ -3,7 +3,15 @@ import { connect, Socket } from "net";
 import { showFailureToast } from "@raycast/utils";
 import { useState, useEffect, useRef } from "react";
 
-export default function Command({ arguments: { host, port } }: { arguments: { host: string; port: string } }) {
+type Props = {
+  arguments: {
+    host: string;
+    port: string;
+    prompt?: string;
+  };
+};
+
+export default function Command({ arguments: { host, port, prompt } }: Props) {
   const [elements, setElements] = useState<string[]>();
   const socket = useRef<Socket>();
 
@@ -44,7 +52,7 @@ export default function Command({ arguments: { host, port } }: { arguments: { ho
   }, [host, port]);
 
   return (
-    <List isLoading={elements === undefined}>
+    <List isLoading={elements === undefined} searchBarPlaceholder={prompt}>
       {elements?.map((item, idx) => (
         <List.Item
           title={item}

@@ -16,7 +16,19 @@ Inspired by [this orange website commenter](https://news.ycombinator.com/item?id
 
 Whitespace is stripped, but this might change in the future once I check if `dmenu` also does that lol.
 
-**TODO:** `-p` (prompt) support
+```
+usage: raycast_dmenu [-h] [-p PROMPT]
+
+dmenu-like raycast extension
+
+Provide option list as stdin, the stdout will contain the chosen option.
+If no option was chosen, the program will exit with the return code set to 1.
+
+options:
+  -h, --help            show this help message and exit
+  -p PROMPT, --prompt PROMPT
+                        search bar placeholder text
+```
 
 ## Installation
 

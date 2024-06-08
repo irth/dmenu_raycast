@@ -4,12 +4,24 @@ import sys
 import subprocess
 from urllib.parse import urlencode, quote
 import socket
+import argparse
+
+from argparse import RawDescriptionHelpFormatter
 
 EXTENSION = "irth/dmenu"
 COMMAND = "index"
 
-elements = list(sys.stdin)
+parser = argparse.ArgumentParser(
+        prog='raycast_dmenu',
+        description="""dmenu-like raycast extension
 
+Provide option list as stdin, the stdout will contain the chosen option.
+If no option was chosen, the program will exit with the return code set to 1.""", formatter_class=RawDescriptionHelpFormatter)
+
+parser.add_argument('-p', '--prompt', help='search bar placeholder text')
+args = parser.parse_args()
+
+elements = list(sys.stdin)
 
 server = socket.socket()
 server.bind(("127.0.0.1", 0))
@@ -21,6 +33,9 @@ arguments = {
     "host": host,
     "port": str(port),
 }
+
+if args.prompt is not None:
+    arguments["prompt"]=args.prompt
 
 query = urlencode({"arguments": json.dumps(arguments)}, quote_via=quote)
 
