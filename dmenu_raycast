@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+import json
+import sys
+import subprocess
+from urllib.parse import urlencode, quote
+import socket
+
+EXTENSION = "irth/dmenu"
+COMMAND = "index"
+
+elements = list(sys.stdin)
+
+
+server = socket.socket()
+server.bind(("127.0.0.1", 0))
+server.listen(0)
+
+host, port = server.getsockname()
+
+arguments = {
+    "host": host,
+    "port": str(port),
+}
+
+query = urlencode({"arguments": json.dumps(arguments)}, quote_via=quote)
+
+url = f"raycast://extensions/{EXTENSION}/{COMMAND}?{query}"
+
+subprocess.run(["open", url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+(conn, _) = server.accept()
+
+conn.send(f"{len(elements)}\n".encode("utf-8"))
+for el in elements:
+    conn.send(f"{el.strip()}\n".encode("utf-8"))
+
+result = b""
+while len(data := conn.recv(1024)) != 0:
+    result += data
+
+final_result = result.decode("utf-8").strip()
+if final_result == '':
+    exit(1)
+print(final_result)
