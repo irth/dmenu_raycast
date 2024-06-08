@@ -12,13 +12,15 @@ EXTENSION = "irth/dmenu"
 COMMAND = "index"
 
 parser = argparse.ArgumentParser(
-        prog='raycast_dmenu',
-        description="""dmenu-like raycast extension
+    prog="raycast_dmenu",
+    description="""dmenu-like raycast extension
 
 Provide option list as stdin, the stdout will contain the chosen option.
-If no option was chosen, the program will exit with the return code set to 1.""", formatter_class=RawDescriptionHelpFormatter)
+If no option was chosen, the program will exit with the return code set to 1.""",
+    formatter_class=RawDescriptionHelpFormatter,
+)
 
-parser.add_argument('-p', '--prompt', help='search bar placeholder text')
+parser.add_argument("-p", "--prompt", help="search bar placeholder text")
 args = parser.parse_args()
 
 elements = list(sys.stdin)
@@ -35,7 +37,7 @@ arguments = {
 }
 
 if args.prompt is not None:
-    arguments["prompt"]=args.prompt
+    arguments["prompt"] = args.prompt
 
 query = urlencode({"arguments": json.dumps(arguments)}, quote_via=quote)
 
@@ -54,6 +56,6 @@ while len(data := conn.recv(1024)) != 0:
     result += data
 
 final_result = result.decode("utf-8").strip()
-if final_result == '':
+if final_result == "":
     exit(1)
 print(final_result)
