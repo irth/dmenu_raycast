@@ -23,7 +23,6 @@ If no option was chosen, the program will exit with the return code set to 1."""
 parser.add_argument("-p", "--prompt", help="search bar placeholder text")
 args = parser.parse_args()
 
-elements = list(sys.stdin)
 
 server = socket.socket()
 server.bind(("127.0.0.1", 0))
@@ -42,8 +41,9 @@ if args.prompt is not None:
 query = urlencode({"arguments": json.dumps(arguments)}, quote_via=quote)
 
 url = f"raycast://extensions/{EXTENSION}/{COMMAND}?{query}"
-
 subprocess.run(["open", url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+elements = list(sys.stdin)
 
 (conn, _) = server.accept()
 
