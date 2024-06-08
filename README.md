@@ -12,6 +12,8 @@ Inspired by [this orange website commenter](https://news.ycombinator.com/item?id
 
 `dmenu_raycast` will either print the selected item to stdout, or exit 0 if the user cancelled without selecting an item.
 
+[![Screencast](./screencast.gif)](./screencast.mp4)
+
 Whitespace is stripped, but this might change in the future once I check if `dmenu` also does that lol.
 
 **TODO:** `-p` (prompt) support
