@@ -21,7 +21,7 @@ If no option was chosen, the program will exit with the return code set to 1."""
 )
 
 parser.add_argument("-p", "--prompt", help="search bar placeholder text")
-args = parser.parse_args()
+args, unknown_args = parser.parse_known_args()
 
 
 server = socket.socket()
