@@ -56,3 +56,5 @@ or
 ```
 ln -s $(pwd)/dmenu_raycast ~/.local/bin
 ```
+
+It may also be advisable to rename, symlink, or alias `dmenu_raycast` to simply `dmenu` in order to ensure compatibility with existing dmenu scripts.
